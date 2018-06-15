@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 
 
 import AddItem from './components/additem.js';
-import Tasks from './components/tasks.js';
+import Items from './components/items';
+import Tasks from './components/tasks';
 import logo from './logo.svg';
 import './App.css';
 
@@ -36,7 +37,7 @@ class App extends Component {
     this.addTask = this.addTask.bind(this);
 
   }
-  componentDidMount(){
+  componentDidMount(){ 
     // let items =[];
     // this.setState({items: items});
     // console.log(this.state.items);
@@ -104,22 +105,28 @@ class App extends Component {
         <div className="todolist">
           <div className="header">
             <h2>任务管理</h2>
+            <div className="all-btn ac-btn">所有</div>
+            <div className="un-btn ac-btn">待做</div>
+            <div className="ye-btn ac-btn">完成</div>
             <div className="add1" onClick={this.showPop}><p>+</p></div>
           </div>
           <ul>
             {
               this.state.items.map((item,index) =>
-              <Tasks
+              <Items
               totalChange={this.updateTotal.bind(this)}
               finishedChange={this.updateFinished.bind(this)} 
 							item={item}  
 							key={index}
               
-              ></Tasks>
-            )}
+              ></Items>
+            )
+            // <Tasks items={this.state.items}></Tasks>
+            }
             
           </ul>
-					<li>{this.state.finished}已完成&nbsp;/&nbsp;{this.state.items.length}总数</li>
+             {/* <Router children></Router> */}
+					<li className="numlist">{this.state.finished}已完成&nbsp;/&nbsp;{this.state.items.length}总数</li>
         </div>
       </div>
       <AddItem needShow={this.state.showAddPop} hidePop={this.hidePop}  addTask={this.addTask}></AddItem>

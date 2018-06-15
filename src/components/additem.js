@@ -1,6 +1,6 @@
 import React from 'react';
-import './add.css'
-import ClassNames from 'classnames';
+import './add.css';
+import ClassNames from 'classnames';//动态class
 
 class AddItem extends React.Component{
     constructor(props) {
@@ -41,7 +41,6 @@ class AddItem extends React.Component{
         let classes = ClassNames({
             'addpop':true,
             'show': this.props.needShow
-            // 'show':true
         });
         return(
         <div className={classes}>
