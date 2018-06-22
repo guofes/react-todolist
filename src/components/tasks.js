@@ -1,25 +1,44 @@
 import React from 'react';
 import Items from './items';
+import { connect } from 'react-redux';
+import { closePop } from '../actions';
 
 class Tasks extends React.Component{
     constructor(props){
         super(props);
-        this.haada = this.haada.bind(this)
+        // this.tototalChange = this.tototalChange.bind(this);
+        // this.tofinishedChange = this.tofinishedChange.bind(this);
 
     }
-    haada(){
-        console.log(this.props.items);
-        // console.log("111");
+    tototalChange(aa){
+        console.log(aa);
+		// this.props.totalChange1(aa);
     }
-
+    tofinishedChange(bb){
+        console.log(bb);
+		// this.props.totalChange1(bb);
+    }
     render() {
-
-        // let items = this.props.items;
+        const items = this.props.items;
         return (
-        <div onClick={this.haada}>这是子路由</div>
-    )
-    
+            <ul>
+           {items.map((item,index) =>
+              <Items
+            //   tototalChange={this.updateTotal}
+            //   tofinishedChange={this.updateFinished} 
+			item={item}  
+			key={index}
+              
+              ></Items>
+            )}
+            </ul>
+    )    
+        }
+    }
+    function finditems(state){
+        return{
+            items: state.items
         }
     }
     
-    export default Tasks;
+    export default connect(finditems)(Tasks);
