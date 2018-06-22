@@ -48,6 +48,10 @@
   -webkit-box-shadow: 0 3px 5px hsl(0, 0%, 91%);
   box-shadow: 0 3px 5px hsl(0, 0%, 91%);
 }
+a{
+  color: hsl(0, 0%, 100%);
+  text-decoration:none;
+}
 .ac-btn{
   background:#fff;
   width: 100px;
@@ -98,6 +102,33 @@
   color:#aee;
   cursor: pointer;
 } 
+.desc{
+  position: absolute;
+  bottom: 40px;
+  right: 6%;
+  width: 200px;
+  height: 22px;
+}
+.desc p{
+  display: block;
+  float:left;
+  margin: 0 5px 0 25px;
+}
+.desc-u{
+  float: left;
+  width: 22px;
+  height: 22px;
+  background: #DFFCB5;
+  border-radius: 50%;
+}
+.desc-f{
+  float: left;
+  width: 22px;
+  height: 22px;
+  background: #FFFA9D;
+  border-radius: 50%;
+
+}
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

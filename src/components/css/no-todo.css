@@ -1,0 +1,12 @@
+.no-todo{
+    width: calc(100%-40px);
+    height: 300px;
+    border:2px solid #aaa;
+    border-radius: 10px;
+    margin: 20px 5%;
+}
+.no-todo h2{
+    padding-top:30px;
+    color:#aaa;
+    font-size:20px;
+}

@@ -1,16 +1,17 @@
 import React from 'react';
 import Items from './items';
-import './css/no-todo.css';
 import { connect } from 'react-redux';
+import './css/no-todo.css';
 
-class Tasks extends React.Component{
+class finished extends React.Component{
     render() {
-        const items = this.props.items;
+        const fi = this.props.items.length
+        const items = this.props.items.filter(item => item.status==1);
 
         if(items.length == 0){
             return (
                 <div className ="no-todo">
-                    <h2>还没有添加任务，快去建立一个吧!</h2>
+                    <h2>加油，去完成任务吧!</h2>
                 </div>)
         }
         else{
@@ -24,11 +25,12 @@ class Tasks extends React.Component{
               
               ></Items>
             )}
+            {/* <div>这是所有已经完成的</div> */}
             </ul>
-					<li className="numlist">总数 : {items.length}</li>
-                   </div> 
-    ) 
-}   
+			<li className="numlist">完成:{items.length}/总数:{fi}</li>
+            </div>
+    )  
+}  
         }
     }
     function finditems(state){
@@ -37,4 +39,5 @@ class Tasks extends React.Component{
         }
     }
     
-    export default connect(finditems)(Tasks);
+    export default connect(finditems)(finished);
+    // export default finished;

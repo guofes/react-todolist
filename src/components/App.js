@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-// import {RouteHandler, Link } from 'react-router';
+import { Link,withRouter } from 'react-router-dom';
 
 
 import AddItem from './additem.js';
-// import Items from './components/items';
-// import Tasks from './tasks';
 import logo from '../logo.svg';
 import './css/App.css';
 
@@ -12,46 +10,9 @@ import { connect } from 'react-redux';
 import { showPop } from '../actions';
 
 class App extends Component {
-  // constructor(){
-  //   super();
-
-  // }
-  // updateFinished(todoItem){
-  //   var sum = 0;
-  //   console.log(this.state.items);
-
-	// 	this.state.items.forEach( (item) => {
-  //     if (item.id === todoItem.id) {
-	// 			item.status = todoItem.status;
-  //     }
-      
-  //     if (item.status === 1) {
-  //       sum++;
-  //     }
-  // });
-
-	// 	this.setState({
-	// 		finished: sum
-	// 	});
-  // }
-  // updateTotal (todoItem) {
-  //   var obj = [], sum = 0;
-  //   this.state.items.forEach((item) =>{
-  //     if (item.id !== todoItem.id) {
-	// 			obj.push(item);
-	// 			if (item.status === 1 ) {
-	// 				sum++;
-	// 			}
-	// 		}
-  //   });
-	// 	this.setState({
-	// 		items: obj,
-	// 		finished: sum
-	// 	});
-  // }
 
   render() {
-    const { dispatch,finished,items} = this.props;
+    const { dispatch,items} = this.props;
     return (
     <div>
       <div className="App">
@@ -62,46 +23,33 @@ class App extends Component {
         <div className="todolist">
           <div className="header">
             <h2>任务管理</h2>
-            <div className="all-btn ac-btn">所有</div>
-            <div className="un-btn ac-btn">待做</div>
-            <div className="ye-btn ac-btn">完成</div>
+            <Link to="/"  className="all-btn ac-btn">所有</Link>
+            <Link to="/unfinish" className="un-btn ac-btn">待做</Link>
+            <Link to="/finished" className="ye-btn ac-btn">完成</Link>
             <div className="add1" onClick={ () => dispatch(showPop())}><p>+</p></div>
           </div>
-            {
-            //   this.state.items.map((item,index) =>
-            //   <Items
-            //   totalChange={this.updateTotal.bind(this)}
-            //   finishedChange={this.updateFinished.bind(this)} 
-						// 	item={item}  
-						// 	key={index}
-              
-            //   ></Items>
-            // )
-            // <Tasks items={this.state.items}
-            // finishedChange={this.tofinishedChange.bind(this)}
-            //   totalChange={this.tototalChange}
-            // ></Tasks>
-            // <Tasks></Tasks>
-            }
-             {/* <Router children></Router> */}
-					<li className="numlist">{finished}已完成&nbsp;/&nbsp;{items.length}总数</li>
+
+        {this.props.children}
+          {/* <li className="numlist">总数 : {items.length}</li> */}
+          <div className = "desc">
+           <p>待做:</p><div className = "desc-u">
+            </div>
+            <p>完成:</p><div className = "desc-f">
+            </div>
+          </div>
         </div>
       </div>
-      {/* <AddItem needShow={this.state.showAddPop} hidePop={this.hidePop}  addTask={this.addTask}></AddItem> */}
       <AddItem  hidePop={this.hidePop}  addTask={this.addTask}></AddItem>
-        
-      {/* <Tasks></Tasks> */}
     </div>
     );
   }
 }
 function select(state){
   return {
-    // showaddpop:state.showaddpop
     finished:state.finished,
     items:state.items
   }
 }
 
-export default connect(select)(App);
+export default withRouter(connect(select)(App));
 // export default App;

@@ -1,8 +1,10 @@
 import {
-    ITEMS,COMPLETE_TODO,DELETE_TODO
+    ITEMS,
+    COMPLETE_TODO,
+    DELETE_TODO
   } from '../actions';
 
-let nextTodoId = 3
+let nextTodoId = 5;
   function items(state = [], action) {
     switch (action.type) {
         case ITEMS:{
@@ -19,6 +21,7 @@ let nextTodoId = 3
       };
       case COMPLETE_TODO:{
         console.log(action.id);
+        console.log(state);
         return [
           //对象合并是指：将源对象里面的属性添加到目标对象中去，若两者的属性名有冲突，后面的将会覆盖前面的
             ...state.slice(0, action.id),
@@ -27,6 +30,7 @@ let nextTodoId = 3
             }),
             ...state.slice(action.id + 1)
           ];
+        // return state;
 
       };
       case DELETE_TODO:{

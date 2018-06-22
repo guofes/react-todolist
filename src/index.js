@@ -1,19 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import {Router, Route, IndexRoute} from 'react-router';
 import { Provider } from 'react-redux';
-import {BrowserRouter, Switch, Route} from 'react-router-dom';
-// import {createHashHistory} from 'history';
+import {BrowserRouter, Route} from 'react-router-dom';
 import './index.css';
 import App from './components/App';
 import Tasks from './components/tasks';
+import finished from './components/finished';
+import unfinish from './components/unfinish';
 import configureStore from './stores/configureStore'
-import Router1 from './components/router1';
 import registerServiceWorker from './registerServiceWorker';
 
 var initialState = {
   showaddpop: false, 
-  finished: 1,
+  // finished: 1,
   items: [
     {
     id: 0,
@@ -30,29 +29,29 @@ var initialState = {
     name: '打豆豆',
     desc: '打豆豆',
     status : 0
+  }, {
+    id: 3,
+    name: '喝水',
+    desc: '喝水',
+    status : 1
+  }, {
+    id: 4,
+    name: '写代码',
+    desc: '写代码',
+    status : 0
   }
 ]
 }
-// import { connect } from 'react-redux';
-// import {
-//   addTodo,
-//   completeTodo,
-//   setVisibilityFilter,
-//   VisibilityFilters
-// } from './actions';
-
-// const history = createHashHistory({queryKey: false});
 ReactDOM.render(
   <Provider store={configureStore(initialState)}>
-    <BrowserRouter>
+    <BrowserRouter >
+    <App>
+    <Route exact path="/" component={Tasks}/>
+    <Route path="/unfinish" component={unfinish} />
+    <Route path="/finished" component={finished} /> 
 
-    <Route path="/" component={App}>
-    <Switch>
+    </App>
 
-      {/* <IndexRoute component={Router1}/> */}
-      <Route path="/tasks" component={Tasks}/>
-      </Switch>
-    </Route>
     </BrowserRouter>
     
   </Provider>,

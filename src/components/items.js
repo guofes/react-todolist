@@ -43,14 +43,10 @@ class Items extends React.Component{
         }
         var itemStyle = item.status === 0 ? unfinish : finish;
         
-        // let items = this.props.items;
-        // console.log(this.props.items);
         return(
             <div>
-        {/*  <li  key={item.id} style={itemStyle} > */}
         <li style={itemStyle} >
         <span 
-                    // onClick={this.handleFinished} 
                     onClick={() => dispatch(completeTodo(item.id))} 
 					id={item.id}
 					className="check-btn"
